@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Elite Service | Redefined Digital Marketing</title>
+
+          <!-- Favicon -->
+      <link rel="icon" type="image/x-icon" href="/fevicons/favicon.ico" />
+
+      <link rel="icon" type="image/png" sizes="16x16" href="/fevicons/favicon-16x16.png" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/fevicons/favicon-32x32.png" />
+
+      <!-- Apple Touch Icon -->
+      <link rel="apple-touch-icon" sizes="180x180" href="/fevicons/apple-touch-icon.png" />
+
+      <!-- Android Chrome -->
+      <link rel="icon" type="image/png" sizes="192x192" href="/fevicons/android-chrome-192x192.png" />
+      <link rel="icon" type="image/png" sizes="512x512" href="/fevicons/android-chrome-512x512.png" />
+
+      <!-- Web App Manifest -->
+      <link rel="manifest" href="/fevicons/site.webmanifest" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Plus Jakarta Sans', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                50: '#f0faff',
+                100: '#e0f5ff',
+                200: '#baeaff',
+                300: '#7cd9ff',
+                400: '#38c5ff',
+                500: '#00C4FF', 
+                600: '#00a3d9',
+                700: '#0083b0',
+                800: '#006a8f',
+                900: '#065775',
+              },
+              gold: {
+                50: '#fdfbf7',
+                100: '#f9f2e6',
+                200: '#f0e2c1',
+                300: '#e3cc91',
+                400: '#d3b061',
+                500: '#C5A021', // Primary Gold
+                600: '#a6821a',
+                700: '#876417',
+                800: '#6d5116',
+                900: '#5a4216',
+              }
+            },
+            animation: {
+              'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 3s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.2.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "framer-motion": "https://esm.sh/framer-motion@^12.31.0",
+    "gsap": "https://esm.sh/gsap@^3.12.5",
+    "gsap/ScrollTrigger": "https://esm.sh/gsap@^3.12.5/ScrollTrigger",
+    "gsap/": "https://esm.sh/gsap@^3.14.2/",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.3",
+    "path": "https://esm.sh/path@^0.12.7",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "url": "https://esm.sh/url@^0.11.4"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-zinc-50 text-zinc-900 overflow-x-hidden cursor-none">
+    <div id="root"></div>
+  <script type="module" src="/index.jsx"></script>
+</body>
+</html>
