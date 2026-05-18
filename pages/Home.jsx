@@ -1,13 +1,19 @@
+import React, { useRef, useEffect } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  AnimatePresence,
+} from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
-import React, { useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useNavigate } from 'react-router-dom';
-
-import MethodologySection from '../components/MethodologySection';
-import MotionWrapper from '../components/MotionWrapper';
-import { SERVICES } from '../constants';
+import MethodologySection from "../components/MethodologySection";
+import MotionWrapper from "../components/MotionWrapper";
+import { SERVICES } from "../constants";
 import {
   ArrowRight,
   Search,
@@ -22,63 +28,64 @@ import {
   BarChart3,
   ShieldCheck,
   Target,
-  Code, Megaphone
-} from 'lucide-react';
+  Code,
+  Megaphone,
+} from "lucide-react";
 
 const DETAILED_APPROACH = [
   {
     title: "Client Understanding",
     desc: "We begin by analysing each client’s goals, challenges, and target audience to build a solid foundation.",
     icon: <SearchCheck size={24} />,
-    color: "bg-blue-500/10 text-blue-500"
+    color: "bg-blue-500/10 text-blue-500",
   },
   {
     title: "Customized Strategy",
     desc: "Crafting tailored solutions that combine creativity, technology, and data-driven insights for unique impact.",
     icon: <Compass size={24} />,
-    color: "bg-gold-500/10 text-gold-500"
+    color: "bg-gold-500/10 text-gold-500",
   },
   {
     title: "Creative Execution",
     desc: "Delivering visually compelling designs, engaging campaigns, and high-performance web solutions that stand out.",
     icon: <Palette size={24} />,
-    color: "bg-purple-500/10 text-purple-500"
+    color: "bg-purple-500/10 text-purple-500",
   },
   {
     title: "Collaboration",
     desc: "Working closely with clients as an extension of their team to ensure absolute alignment and transparency.",
     icon: <Users size={24} />,
-    color: "bg-emerald-500/10 text-emerald-500"
+    color: "bg-emerald-500/10 text-emerald-500",
   },
   {
     title: "Continuous Optimization",
     desc: "Monitoring performance in real-time and refining strategies to maximize results and drive higher ROI.",
     icon: <Zap size={24} />,
-    color: "bg-orange-500/10 text-orange-500"
+    color: "bg-orange-500/10 text-orange-500",
   },
   {
     title: "Measurable Impact",
     desc: "Focusing strictly on outcomes that drive tangible growth, engagement, and long-term business success.",
     icon: <BarChart3 size={24} />,
-    color: "bg-indigo-500/10 text-indigo-500"
+    color: "bg-indigo-500/10 text-indigo-500",
   },
   {
     title: "Quality & Timely Delivery",
     desc: "We deliver high-quality digital solutions with extreme precision and punctuality, ensuring client satisfaction.",
     icon: <ShieldCheck size={24} />,
-    color: "bg-red-500/10 text-red-500"
-  }
+    color: "bg-red-500/10 text-red-500",
+  },
 ];
 
-import Hero from '../components/Hero';
-import About from '../components/About';
-import Services from '../components/Services';
-import Portfolio from '../components/Portfolio';
-import Testimonials from '../components/Testimonials';
-import Partnership from '../components/Partnership';
-import Clients from '../components/Clients';
-import { HighlightScrub, FixedTextMask } from '../components/AdvancedMotions';
-import AdvancedMotions1 from '../components/AdvancedMotions1';
+import Hero from "../components/Hero";
+import About from "../components/About";
+import Services from "../components/Services";
+import Portfolio from "../components/Portfolio";
+import Testimonials from "../components/Testimonials";
+import Partnership from "../components/Partnership";
+import Clients from "../components/Clients";
+import { HighlightScrub, FixedTextMask } from "../components/AdvancedMotions";
+import AdvancedMotions1 from "../components/AdvancedMotions1";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -87,24 +94,70 @@ const Home = () => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"]
+    offset: ["start start", "end end"],
   });
 
   const springConfig = { mass: 1, stiffness: 40, damping: 20 };
-  const marqueeX = useSpring(useTransform(scrollYProgress, [0, 1], [0, -1500]), springConfig);
+  const marqueeX = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, -1500]),
+    springConfig,
+  );
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 1 }}
-      ref={containerRef}
-    >
-      <Hero />
-      <Clients />
+    <>
+      <Helmet>
+        <title>
+          Best Digital Marketing Agency in Bangalore | Digital Elite Services
+        </title>
 
-      {/* <div className="bg-white py-24 border-y border-zinc-100 overflow-hidden relative">
+        <meta
+          name="description"
+          content="Partner with Digital Elite Services, the best digital marketing agency in Bangalore. We provide top digital marketing services to increase traffic, leads, and sales."
+        />
+
+        <meta
+          name="keywords"
+          content="digital marketing agency in Bangalore, best digital marketing company Bangalore, SEO services Bangalore, social media marketing Bangalore, branding agency Bangalore, web development company Bangalore, PPC services Bangalore, online marketing services, performance marketing agency, Digital Elite Services"
+        />
+
+        <meta name="robots" content="index, follow" />
+
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Best Digital Marketing Agency in Bangalore | Digital Elite Services"
+        />
+        <meta
+          property="og:description"
+          content="Partner with Digital Elite Services, the best digital marketing agency in Bangalore. We provide top digital marketing services to increase traffic, leads, and sales."
+        />
+
+        <meta property="og:url" content="https://digitaleliteservices.in/" />
+
+        <link rel="canonical" href="https://digitaleliteservices.in/" />
+      </Helmet>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+        ref={containerRef}
+      >
+        {" "}
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+        ref={containerRef}
+      >
+        <Hero />
+        <Clients />
+
+        {/* <div className="bg-white py-24 border-y border-zinc-100 overflow-hidden relative">
         <motion.div style={{ x: marqueeX }} className="flex whitespace-nowrap items-center gap-20">
           {[...Array(10)].map((_, i) => (
             <div key={i} className="flex items-center gap-10 text-zinc-100">
@@ -117,118 +170,134 @@ const Home = () => {
         </motion.div>
       </div> */}
 
-      <section className="py-32 bg-white overflow-hidden">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center mb-24">
-            <MotionWrapper variant="fade">
-              <h2 className="text-gold-600 font-black uppercase tracking-[0.4em] text-[10px] mb-6 flex items-center justify-center gap-3">
-                <span className="text-xl">🌟</span> Discover With Us
-              </h2>
-              <h3 className="text-4xl md:text-6xl font-display font-black text-zinc-900 mb-8 tracking-tighter uppercase leading-tight">
-                What We
-                <span className="relative inline-block px-8">
-                  <span className="text-gold-500 ">Offer {" "}</span>
-                  <svg
-                    viewBox="0 0 286 73"
-                    fill="none"
-                    className="absolute -left-1 -right-4 -top-2 bottom-0 translate-y-2 pointer-events-none w-full h-full"
+        <section className="py-32 bg-white overflow-hidden">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center mb-24">
+              <MotionWrapper variant="fade">
+                <h2 className="text-gold-600 font-black uppercase tracking-[0.4em] text-[10px] mb-6 flex items-center justify-center gap-3">
+                  <span className="text-xl">🌟</span> Discover With Us
+                </h2>
+                <h3 className="text-4xl md:text-6xl font-display font-black text-zinc-900 mb-8 tracking-tighter uppercase leading-tight">
+                  What We
+                  <span className="relative inline-block px-8">
+                    <span className="text-gold-500 ">Offer </span>
+                    <svg
+                      viewBox="0 0 286 73"
+                      fill="none"
+                      className="absolute -left-1 -right-4 -top-2 bottom-0 translate-y-2 pointer-events-none w-full h-full"
+                    >
+                      <motion.path
+                        initial={{ pathLength: 0 }}
+                        whileInView={{ pathLength: 1 }}
+                        viewport={{ once: false }}
+                        transition={{
+                          duration: 1.25,
+                          delay: 0.5,
+                          ease: "easeInOut",
+                        }}
+                        d="M142.293 1C106.854 16.8908 6.08202 7.17705 1.23654 43.3756C-2.10604 68.3466 29.5633 73.2652 122.688 71.7518C215.814 70.2384 316.298 70.689 275.761 38.0785C230.14 1.37835 97.0503 24.4575 52.9384 1"
+                        stroke="#154d04"
+                        strokeWidth="3"
+                      />
+                    </svg>
+                  </span>
+                </h3>
+                <p className="text-xl text-zinc-500 leading-relaxed font-medium">
+                  Tailored services that combine creativity, strategy and
+                  engineering — built to move your brand forward.
+                </p>
+              </MotionWrapper>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <MotionWrapper variant="fade" delay={0.1}>
+                <div className="group relative bg-zinc-50 rounded-[3rem] p-12 h-full flex flex-col border border-zinc-100 hover:border-gold-500 transition-all duration-500 hover:shadow-2xl hover:shadow-gold-500/10">
+                  <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-gold-500 mb-10 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 shadow-sm">
+                    <Megaphone size={32} />
+                  </div>
+                  <h4 className="text-2xl font-display font-black text-zinc-900 uppercase tracking-tighter mb-4">
+                    Digital Marketing <br />
+                    <span className="text-gold-500">Excellence</span>
+                  </h4>
+                  <p className="text-zinc-500 font-medium leading-relaxed mb-10">
+                    We craft strategies that amplify visibility, engage
+                    audiences, and drive measurable growth.
+                  </p>
+                  <button
+                    onClick={() => navigate("/contact")}
+                    className="mt-auto flex items-center gap-3 text-[10px] font-black text-zinc-900 uppercase tracking-[0.3em] group/btn hover:text-gold-600 transition-colors"
                   >
-                    <motion.path
-                      initial={{ pathLength: 0 }}
-                      whileInView={{ pathLength: 1 }}
-                      viewport={{ once: false }}
-                      transition={{
-                        duration: 1.25,
-                        delay: 0.5,
-                        ease: "easeInOut",
-                      }}
-                      d="M142.293 1C106.854 16.8908 6.08202 7.17705 1.23654 43.3756C-2.10604 68.3466 29.5633 73.2652 122.688 71.7518C215.814 70.2384 316.298 70.689 275.761 38.0785C230.14 1.37835 97.0503 24.4575 52.9384 1"
-                      stroke="#154d04"
-                      strokeWidth="3"
+                    Let's talk
+                    <ArrowRight
+                      size={14}
+                      className="text-gold-500 group-hover/btn:translate-x-2 transition-transform"
                     />
-                  </svg>
-                </span>
-              </h3>
-              <p className="text-xl text-zinc-500 leading-relaxed font-medium">
-                Tailored services that combine creativity, strategy and engineering — built to move your brand forward.
-              </p>
-            </MotionWrapper>
+                  </button>
+                </div>
+              </MotionWrapper>
+
+              <MotionWrapper variant="fade" delay={0.2}>
+                <div className="group relative bg-zinc-950 rounded-[3rem] p-12 h-full flex flex-col border border-white/5 hover:border-gold-500 transition-all duration-500 hover:shadow-2xl hover:shadow-gold-500/20">
+                  <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center text-gold-500 mb-10 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                    <Palette size={32} />
+                  </div>
+                  <h4 className="text-2xl font-display font-black text-white uppercase tracking-tighter mb-4">
+                    Creative Design <br />
+                    <span className="text-gold-500">& Branding</span>
+                  </h4>
+                  <p className="text-zinc-400 font-medium leading-relaxed mb-10">
+                    From graphics to complete brand identities, we design with
+                    impact — ensuring your message is memorable.
+                  </p>
+                  <button
+                    onClick={() => navigate("/contact")}
+                    className="mt-auto flex items-center gap-3 text-[10px] font-black text-white uppercase tracking-[0.3em] group/btn hover:text-gold-600 transition-colors"
+                  >
+                    Let's talk
+                    <ArrowRight
+                      size={14}
+                      className="text-gold-500 group-hover/btn:translate-x-2 transition-transform"
+                    />
+                  </button>
+                </div>
+              </MotionWrapper>
+
+              <MotionWrapper variant="fade" delay={0.3}>
+                <div className="group relative bg-zinc-50 rounded-[3rem] p-12 h-full flex flex-col border border-zinc-100 hover:border-gold-500 transition-all duration-500 hover:shadow-2xl hover:shadow-gold-500/10">
+                  <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-gold-500 mb-10 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 shadow-sm">
+                    <Code size={32} />
+                  </div>
+                  <h4 className="text-2xl font-display font-black text-zinc-900 uppercase tracking-tighter mb-4">
+                    Custom Web <br />
+                    <span className="text-gold-500">Development</span>
+                  </h4>
+                  <p className="text-zinc-500 font-medium leading-relaxed mb-10">
+                    We build tailored web solutions that transform ideas into
+                    powerful digital experiences.
+                  </p>
+                  <button
+                    onClick={() => navigate("/contact")}
+                    className="mt-auto flex items-center gap-3 text-[10px] font-black text-zinc-900 uppercase tracking-[0.3em] group/btn hover:text-gold-600 transition-colors"
+                  >
+                    Let's talk
+                    <ArrowRight
+                      size={14}
+                      className="text-gold-500 group-hover/btn:translate-x-2 transition-transform"
+                    />
+                  </button>
+                </div>
+              </MotionWrapper>
+            </div>
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <MotionWrapper variant="fade" delay={0.1}>
-              <div className="group relative bg-zinc-50 rounded-[3rem] p-12 h-full flex flex-col border border-zinc-100 hover:border-gold-500 transition-all duration-500 hover:shadow-2xl hover:shadow-gold-500/10">
-                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-gold-500 mb-10 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 shadow-sm">
-                  <Megaphone size={32} />
-                </div>
-                <h4 className="text-2xl font-display font-black text-zinc-900 uppercase tracking-tighter mb-4">
-                  Digital Marketing <br /><span className="text-gold-500">Excellence</span>
-                </h4>
-                <p className="text-zinc-500 font-medium leading-relaxed mb-10">
-                  We craft strategies that amplify visibility, engage audiences, and drive measurable growth.
-                </p>
-                <button
-                  onClick={() => navigate('/contact')}
-                  className="mt-auto flex items-center gap-3 text-[10px] font-black text-zinc-900 uppercase tracking-[0.3em] group/btn hover:text-gold-600 transition-colors"
-                >
-                  Let's talk
-                  <ArrowRight size={14} className="text-gold-500 group-hover/btn:translate-x-2 transition-transform" />
-                </button>
-              </div>
-            </MotionWrapper>
+        <HighlightScrub />
+        <Partnership />
+        <AdvancedMotions1 />
+        <FixedTextMask />
+        <MethodologySection />
 
-            <MotionWrapper variant="fade" delay={0.2}>
-              <div className="group relative bg-zinc-950 rounded-[3rem] p-12 h-full flex flex-col border border-white/5 hover:border-gold-500 transition-all duration-500 hover:shadow-2xl hover:shadow-gold-500/20">
-                <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center text-gold-500 mb-10 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-                  <Palette size={32} />
-                </div>
-                <h4 className="text-2xl font-display font-black text-white uppercase tracking-tighter mb-4">
-                  Creative  Design <br /><span className="text-gold-500">& Branding</span>
-                </h4>
-                <p className="text-zinc-400 font-medium leading-relaxed mb-10">
-                  From graphics to complete brand identities, we design with impact — ensuring your message is memorable.
-                </p>
-                <button
-                  onClick={() => navigate('/contact')}
-                  className="mt-auto flex items-center gap-3 text-[10px] font-black text-white uppercase tracking-[0.3em] group/btn hover:text-gold-600 transition-colors"
-                >
-                  Let's talk
-                  <ArrowRight size={14} className="text-gold-500 group-hover/btn:translate-x-2 transition-transform" />
-                </button>
-              </div>
-            </MotionWrapper>
-
-            <MotionWrapper variant="fade" delay={0.3}>
-              <div className="group relative bg-zinc-50 rounded-[3rem] p-12 h-full flex flex-col border border-zinc-100 hover:border-gold-500 transition-all duration-500 hover:shadow-2xl hover:shadow-gold-500/10">
-                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-gold-500 mb-10 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 shadow-sm">
-                  <Code size={32} />
-                </div>
-                <h4 className="text-2xl font-display font-black text-zinc-900 uppercase tracking-tighter mb-4">
-                  Custom Web <br /><span className="text-gold-500">Development</span>
-                </h4>
-                <p className="text-zinc-500 font-medium leading-relaxed mb-10">
-                  We build tailored web solutions that transform ideas into powerful digital experiences.
-                </p>
-                <button
-                  onClick={() => navigate('/contact')}
-                  className="mt-auto flex items-center gap-3 text-[10px] font-black text-zinc-900 uppercase tracking-[0.3em] group/btn hover:text-gold-600 transition-colors"
-                >
-                  Let's talk
-                  <ArrowRight size={14} className="text-gold-500 group-hover/btn:translate-x-2 transition-transform" />
-                </button>
-              </div>
-            </MotionWrapper>
-          </div>
-        </div>
-      </section>
-
-      <HighlightScrub />
-      <Partnership />
-      <AdvancedMotions1 />
-      <FixedTextMask />
-      <MethodologySection />
-
-      {/* <section className="py-40 bg-green-950 relative overflow-hidden">
+        {/* <section className="py-40 bg-green-950 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gold-500/5 rounded-full blur-[150px] -mr-60 -mt-60 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-500/5 rounded-full blur-[120px] -ml-40 -mb-40 pointer-events-none" />
 
@@ -290,8 +359,9 @@ const Home = () => {
         </div>
       </section> */}
 
-      <Testimonials />
-    </motion.div>
+        <Testimonials />
+      </motion.div>
+    </>
   );
 };
 
