@@ -11,7 +11,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "axios": "^1.13.5",
-    "framer-motion": "^12.34.2",
+    "framer-motion": "^12.40.0",
     "gsap": "^3.14.2",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.563.0",

@@ -1399,6 +1399,10 @@ import {
   ShoppingBag
 } from 'lucide-react';
 import MethodologySection from './MethodologySection.jsx';
+import { SERVICE_DETAILS } from '../data/serviceDetails';
+import BrandBuzzLandingPage from '../components/BrandBuzzLandingPage.jsx';
+import HeroImg from "../assets/service-imgs/hero-img.png"
+import HeroSection from "../components/HeroSection"
 
 // Enhanced icon components with brighter colors
 const AnimatedWebIcon = ({ active }) => {
@@ -1553,7 +1557,7 @@ const AnimatedDesignIcon = ({ active }) => {
 };
 
 // Enhanced service metadata with vibrant images
-const SERVICE_META = {
+export const SERVICE_META = {
   0: { 
     img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
     renderIcon: (active) => <AnimatedMarketingIcon active={active} />,
@@ -1586,78 +1590,7 @@ const SERVICE_META = {
   },
 };
 
-// Enhanced service details with more vibrant descriptions
-const SERVICE_DETAILS = {
-  'seo': {
-    subtitle: '🚀 Dominate Search Rankings',
-    desc: 'Our data-driven SEO strategies propel your brand to the top of search results, driving qualified traffic and maximizing ROI.',
-    features: [
-      '🔍 Advanced SEO & Local Search Optimization',
-      '📱 Social Media Marketing & Management',
-      '💰 High-Converting PPC Campaigns',
-      '📧 Automated Email & Content Marketing',
-      '📊 Real-Time Analytics & Performance Tracking',
-      '🎯 LinkedIn Optimization & B2B Lead Gen',
-      '💬 WhatsApp & Email Campaign Automation',
-      '▶️ YouTube & Display Advertising',
-      '📈 Conversion-Focused Social Strategy',
-      '⚡ Weekly Performance Reports & Insights'
-    ]
-  },
-  'web-dev': {
-    subtitle: '💻 Build Digital Excellence',
-    desc: 'We engineer high-performance web solutions that combine stunning design with robust functionality to accelerate your business growth.',
-    features: [
-      '⚡ Custom Full-Stack Development',
-      '🛡️ Enterprise-Grade Security & Maintenance',
-      '🚄 Lightning-Fast Performance Optimization',
-      '🛒 Scalable E-commerce Solutions',
-      '🔍 SEO-First Architecture',
-      '🎨 UX/UI Focused Design',
-      '🔗 API Integrations & Cloud Solutions'
-    ]
-  },
-  'smm': {
-    subtitle: '📱 Conquer Social Media',
-    desc: 'We create magnetic social media strategies that build engaged communities and convert followers into loyal customers.',
-    features: [
-      '📝 Strategic Content Calendar Planning',
-      '🤝 Influencer Partnership Management',
-      '💬 24/7 Community Engagement',
-      '🎥 Viral Video Content Production',
-      '📱 Platform-Specific Optimization',
-      '💰 High-ROI Social Advertising',
-      '🎯 Brand Voice Development'
-    ]
-  },
-  'graphic-design': {
-    subtitle: '🎨 Visual Storytelling Mastery',
-    desc: 'We craft stunning visuals that capture attention, communicate your brand story, and drive meaningful engagement.',
-    features: [
-      '✨ Premium Brand Identity Design',
-      '📄 Professional Marketing Collaterals',
-      '📱 Scroll-Stopping Social Creatives',
-      '📊 Engaging Infographics',
-      '🎬 High-Impact Video Content',
-      '🖼️ Dynamic Advertising Banners',
-      '🎯 Conversion-Focused Design'
-    ]
-  },
-  'lead-gen': {
-    subtitle: '⚡ Supercharge Your Sales',
-    desc: 'We build sophisticated lead generation systems that consistently deliver high-quality prospects ready to convert.',
-    features: [
-      '🎯 Performance-Driven PPC Campaigns',
-      '💼 Targeted B2B LinkedIn Strategies',
-      '📈 Conversion Rate Optimization',
-      '🏗️ High-Converting Landing Pages',
-      '🤖 Automated Email Sequences',
-      '🔄 CRM Integration & Automation',
-      '📊 Multi-Channel Attribution',
-      '💰 ROI-Focused Analytics'
-    ]
-  }
-};
+
 
 // Enhanced approach with brighter colors
 const DETAILED_APPROACH = [
@@ -1715,14 +1648,10 @@ const DETAILED_APPROACH = [
 const Services = () => {
   const navigate = useNavigate();
   const [hoveredId, setHoveredId] = useState(null);
-  const [selectedServiceId, setSelectedServiceId] = useState(null);
-
-  const selectedService = SERVICES.find(s => s.id === selectedServiceId);
-  const selectedDetails = selectedServiceId ? SERVICE_DETAILS[selectedServiceId] : null;
   
   return (
     <div className="bg-gradient-to-b from-white to-zinc-50">
-      <section id="services" className="py-32 relative overflow-hidden">
+      <section id="services" className="py-12 relative overflow-hidden">
         {/* Modern abstract background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
@@ -1730,9 +1659,9 @@ const Services = () => {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
         </div>
 
-        <div className="container mx-auto px-6 lg:px-16 relative z-10">
+        <div className="container mx-auto px-6 lg:px-8 relative z-10">
           {/* Enhanced header with modern typography */}
-          <div className="max-w-4xl mb-24">
+          {/* <div className="max-w-4xl mb-24">
             <MotionWrapper variant="fade">
               <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 px-4 py-2 rounded-full mb-6">
                 <Sparkles size={16} className="text-emerald-500" />
@@ -1751,10 +1680,13 @@ const Services = () => {
                 <span className="font-semibold text-zinc-900"> maximize your ROI</span>
               </p>
             </MotionWrapper>
-          </div>
+          </div> */}
+          
+          
+          <HeroSection />
 
           {/* Enhanced service cards grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex flex-wrap justify-center gap-8">
             {SERVICES.map((service, idx) => {
               const meta = SERVICE_META[idx];
               const isActive = hoveredId === service.id;
@@ -1769,88 +1701,92 @@ const Services = () => {
               };
 
               return (
-                <MotionWrapper 
-                  key={service.id} 
-                  variant="fade"
-                  delay={idx * 0.1}
-                >
-                  <motion.div 
-                    onMouseEnter={() => setHoveredId(service.id)}
-                    onMouseLeave={() => setHoveredId(null)}
-                    onClick={() => setSelectedServiceId(service.id)}
-                    whileHover={{ y: -8 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="group relative bg-white rounded-3xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500"
+                <div key={service.id} className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.34rem)] flex justify-center">
+                  <MotionWrapper 
+                    variant="fade"
+                    delay={idx * 0.1}
                   >
-                    {/* Modern gradient overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${meta?.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10`} />
-                    
-                    {/* Image background with modern treatment */}
-                    <div className="absolute inset-0 z-0">
-                      <img 
-                        src={meta?.img} 
-                        className="w-full h-full object-cover transition-all duration-700 scale-110 group-hover:scale-100 opacity-20 group-hover:opacity-30" 
-                        alt={service.title}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-white via-white/95 to-white/90" />
-                    </div>
+                    <motion.div 
+                      onMouseEnter={() => setHoveredId(service.id)}
+                      onMouseLeave={() => setHoveredId(null)}
+                      onClick={() => navigate('/services/' + service.id)}
+                      whileHover={{ y: -8 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="group relative bg-white rounded-3xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 w-full"
+                    >
+                      {/* Modern gradient overlay */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${meta?.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10`} />
+                      
+                      {/* Image background with modern treatment */}
+                      <div className="absolute inset-0 z-0">
+                        <img 
+                          src={meta?.img} 
+                          className="w-full h-full object-cover transition-all duration-700 scale-110 group-hover:scale-100 opacity-20 group-hover:opacity-30" 
+                          alt={service.title}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/95 to-white/90" />
+                      </div>
 
-                    {/* Content */}
-                    <div className="relative z-20 p-10 flex flex-col h-[420px]">
-                      {/* Icon with modern styling */}
-                      <div className={`mb-8 transition-all duration-500 ${
-                        isActive ? 'scale-110' : 'scale-100'
-                      }`}>
-                        <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${
-                          gradientColors[accentColor]
-                        } bg-opacity-10 flex items-center justify-center text-white shadow-lg`}>
-                          {meta?.renderIcon(isActive)}
+                      {/* Content */}
+                      <div className="relative z-20 p-4  flex flex-col h-[420px]">
+                        {/* Icon with modern styling */}
+                        {/* <div className={`mb-8 transition-all duration-500 ${
+                          isActive ? 'scale-110' : 'scale-100'
+                        }`}>
+                          <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${
+                            gradientColors[accentColor]
+                          } bg-opacity-10 flex items-center justify-center text-white shadow-lg`}>
+                            {meta?.renderIcon(isActive)}
+                          </div>
+                        </div> */}
+                        <div className=" flex item-center justify-center">
+                          <img src={service.img} alt={service.title} className='w-40 h-40 object-contain'/>
+                        </div>
+
+                        {/* Title with modern typography */}
+                        <h3 className="text-2xl font-bold flex item-center justify-center text-[#0b2779ff] mb-4 tracking-tight">
+                          {service.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="text-zinc-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                          {service.description}
+                        </p>
+
+                        {/* Features preview */}
+                        <div className="flex flex-wrap gap-2 mb-auto">
+                          {service.features?.slice(0, 3).map((feature, i) => (
+                            <span key={i} className="text-xs bg-zinc-100 text-zinc-700 px-3 py-1.5 rounded-full font-medium">
+                              {feature}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* CTA with modern styling */}
+                        <div className="flex items-center justify-between mt-4 pt-2 border-t border-zinc-100">
+                          <span className={`text-sm font-semibold bg-gradient-to-r ${
+                            gradientColors[accentColor]
+                          } bg-clip-text text-transparent`}>
+                            Learn more
+                          </span>
+                          <motion.div 
+                            animate={{ x: isActive ? 5 : 0 }}
+                            className={`w-10 h-10 rounded-full bg-gradient-to-r ${
+                              gradientColors[accentColor]
+                            } flex items-center justify-center text-white shadow-lg`}
+                          >
+                            <ArrowRight size={18} />
+                          </motion.div>
                         </div>
                       </div>
 
-                      {/* Title with modern typography */}
-                      <h3 className="text-2xl font-bold text-[#1A1F2E] mb-4 tracking-tight">
-                        {service.title}
-                      </h3>
-
-                      {/* Description */}
-                      <p className="text-zinc-600 text-sm leading-relaxed mb-6 line-clamp-3">
-                        {service.description}
-                      </p>
-
-                      {/* Features preview */}
-                      <div className="flex flex-wrap gap-2 mb-auto">
-                        {service.features?.slice(0, 3).map((feature, i) => (
-                          <span key={i} className="text-xs bg-zinc-100 text-zinc-700 px-3 py-1.5 rounded-full font-medium">
-                            {feature}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* CTA with modern styling */}
-                      <div className="flex items-center justify-between mt-8 pt-4 border-t border-zinc-100">
-                        <span className={`text-sm font-semibold bg-gradient-to-r ${
-                          gradientColors[accentColor]
-                        } bg-clip-text text-transparent`}>
-                          Learn more
-                        </span>
-                        <motion.div 
-                          animate={{ x: isActive ? 5 : 0 }}
-                          className={`w-10 h-10 rounded-full bg-gradient-to-r ${
-                            gradientColors[accentColor]
-                          } flex items-center justify-center text-white shadow-lg`}
-                        >
-                          <ArrowRight size={18} />
-                        </motion.div>
-                      </div>
-                    </div>
-
-                    {/* Modern corner accent */}
-                    <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${
-                      gradientColors[accentColor]
-                    } opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-bl-full`} />
-                  </motion.div>
-                </MotionWrapper>
+                      {/* Modern corner accent */}
+                      <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${
+                        gradientColors[accentColor]
+                      } opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-bl-full`} />
+                    </motion.div>
+                  </MotionWrapper>
+                </div>
               );
             })}
           </div>
@@ -1876,133 +1812,9 @@ const Services = () => {
           </div>
         </div>
       </section>
-
-      {/* Enhanced modal with modern styling */}
-      <AnimatePresence>
-        {selectedServiceId && selectedService && selectedDetails && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedServiceId(null)}
-              className="absolute inset-0 bg-black/70 backdrop-blur-md"
-            />
-            
-            <motion.div
-              layoutId={selectedServiceId}
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-6xl bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row max-h-[90vh]"
-            >
-              <button 
-                onClick={() => setSelectedServiceId(null)}
-                className="absolute top-6 right-6 z-50 p-3 bg-white/90 backdrop-blur hover:bg-white rounded-full transition-all text-zinc-900 shadow-lg"
-              >
-                <X size={20} />
-              </button>
-
-              {/* Left side - Image with modern overlay */}
-              <div className="lg:w-2/5 relative bg-gradient-to-br from-[#849ce6] to-[#515cae] min-h-[300px] lg:min-h-0">
-                <img 
-                  src={SERVICE_META[SERVICES.findIndex(s => s.id === selectedServiceId)]?.img} 
-                  className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60"
-                  alt={selectedService.title}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-[#1A1F2E] via-[#1A1F2E]/80 to-transparent" />
-                <div className="absolute bottom-12 left-12 right-12">
-                  <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-4 py-2 rounded-full mb-6">
-                    <Sparkles size={14} className="text-emerald-400" />
-                    <span className="text-emerald-400 font-semibold text-xs uppercase tracking-wider">Premium Service</span>
-                  </div>
-                  <h2 className="text-4xl lg:text-5xl font-black text-white uppercase tracking-tight mb-4">
-                    {selectedService.title}
-                  </h2>
-                  <div className="w-20 h-1.5 bg-gradient-to-r from-emerald-400 to-blue-400 rounded-full" />
-                </div>
-              </div>
-
-              {/* Right side - Content */}
-              <div className="lg:w-3/5 p-10 lg:p-16 bg-white overflow-y-auto">
-                <div className="max-w-xl">
-                  {/* Subtitle with emoji */}
-                  <h3 className="text-emerald-600 font-bold text-lg mb-4">
-                    {selectedDetails.subtitle}
-                  </h3>
-                  
-                  {/* Description */}
-                  <p className="text-2xl font-bold text-[#1A1F2E] mb-10 leading-tight">
-                    {selectedDetails.desc}
-                  </p>
-
-                  {/* Features grid */}
-                  <div className="space-y-6">
-                    <h4 className="text-xs font-black text-zinc-400 uppercase tracking-wider flex items-center gap-2">
-                      <span className="w-8 h-0.5 bg-emerald-400 rounded-full" />
-                      Elite Capabilities
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {selectedDetails.features.map((feature, i) => (
-                        <motion.div 
-                          key={i}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.2 + (i * 0.03) }}
-                          className="flex items-start gap-3 p-3 rounded-xl hover:bg-zinc-50 transition-colors group"
-                        >
-                          <div className="shrink-0 w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center group-hover:scale-110 transition-transform">
-                            <CheckCircle2 size={14} className="text-emerald-600" />
-                          </div>
-                          <span className="text-zinc-700 text-sm font-medium leading-relaxed">
-                            {feature}
-                          </span>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* CTA buttons */}
-                  {/* <div className="mt-12 flex flex-col sm:flex-row items-center">
-                    <button 
-                      onClick={() => navigate('/contact')}
-                      className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-emerald-600 to-blue-600 text-white rounded-xl font-bold uppercase tracking-wider text-sm hover:shadow-xl hover:scale-105 transition-all"
-                    >
-                      Request Consultation
-                    </button>
-                    
-                  </div> */}
-
-                  <div className="mt-12 flex flex-col sm:flex-row items-center justify-center">
-                    <button 
-                      onClick={() => navigate('/contact')}
-                      className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-emerald-600 to-blue-600 text-white rounded-xl font-bold uppercase tracking-wider text-sm hover:shadow-xl hover:scale-105 transition-all"
-                    >
-                      Request Consultation
-                    </button>
-                  </div>
-
-
-                  {/* Trust badges */}
-                  <div className="mt-8 flex items-center gap-4 text-xs text-zinc-400">
-                    <span className="flex items-center gap-1">
-                      <ShieldCheck size={14} className="text-emerald-500" />
-                      Enterprise Security
-                    </span>
-                    <span className="w-1 h-1 bg-zinc-300 rounded-full" />
-                    <span className="flex items-center gap-1">
-                      <Zap size={14} className="text-emerald-500" />
-                      24/7 Support
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
-       <section className="py-40 bg-green-950 relative overflow-hidden">
+      {/* Modal moved to separate ServiceDetailsPage */}
+      <BrandBuzzLandingPage/>
+       <section className="py-20 bg-green-950 relative overflow-hidden">
          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gold-500/5 rounded-full blur-[150px] -mr-60 -mt-60 pointer-events-none" />
          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-500/5 rounded-full blur-[120px] -ml-40 -mb-40 pointer-events-none" />
 
@@ -2065,6 +1877,30 @@ const Services = () => {
               </div>
             </MotionWrapper>
           </div>
+        </div>
+      </section>
+      <section id="cta-banner-section" className="relative py-12 bg-gradient-to-r from-[#f25c27] to-amber-500 text-white overflow-hidden">
+        
+        {/* Background shapes */}
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 to-transparent pointer-events-none" />
+        
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+          <div className="space-y-1">
+            <h3 className="font-display text-2xl md:text-3xl font-extrabold tracking-tight">
+              Ready to get started?
+            </h3>
+            <p className="text-orange-50 text-sm md:text-base font-normal">
+              Book a live bespoke consultation with our strategists and grow.
+            </p>
+          </div>
+
+          <button
+            id="cta-bottom-btn"
+            onClick={() => navigate('/contact')}
+            className="px-8 py-3.5 rounded-full border-2 border-white hover:bg-white hover:text-[#f25c27] font-bold text-sm md:text-base transition-all transform hover:-translate-y-0.5 shadow-lg shadow-black/10 cursor-pointer text-center"
+          >
+            Contact Us
+          </button>
         </div>
       </section>
       {/* <MethodologySection /> */}

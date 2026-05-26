@@ -76,6 +76,15 @@ import DigitalProject4 from './assets/portfolio/DigitalProject4.jpeg';
 import DigitalProject5 from './assets/portfolio/DigitalProject5.jpeg';
 import DigitalProject6 from './assets/portfolio/DigitalProject6.jpeg';
 import DigitalProject7 from './assets/portfolio/DigitalProject7.jpeg';
+import { img } from 'framer-motion/client';
+
+import DigitalMarketing from './assets/service-imgs/dm-img.jpg'
+import SEO from './assets/service-imgs/seo-img.avif'
+import SocialMediaMarketing from './assets/service-imgs/smm-img.jpg'
+import WebDevelopment from './assets/service-imgs/wd-img.jpg'
+import GraphicDesign from './assets/service-imgs/gd-img.jpg'
+import LeadGeneration from './assets/service-imgs/lg-img.jpg'
+import WhatsappAutomation from './assets/service-imgs/wa-img.jpg'
 
 
 export const DES_LOGO = DESLOGO;
@@ -89,40 +98,69 @@ export const NAV_LINKS = [
 
 export const SERVICES = [
   {
-    id: 'seo',
+    id: 'digital-marketing',
+    img:DigitalMarketing,
     title: 'Digital Marketing',
     description: 'Boost your visibility and rank higher on Google search results with our data-driven digital marketing and SEO strategies.',
     icon: 'Search',
     color: 'bg-blue-500',
   },
   {
-    id: 'web-dev',
+    id: 'seo',
+    img:SEO,
+    title: 'SEO',
+    description: 'Boost your visibility and rank higher on Google search results with our data-driven digital marketing and SEO strategies.',
+    icon: 'Search',
+    color: 'bg-blue-500',
+  },
+  {
+    id:"social-media-marketing",
+    img:SocialMediaMarketing,
+    title: "Social Media Marketing",
+    description: "Boost your visibility and rank higher on Google search results with our data-driven digital marketing and SEO strategies.",
+    icon: 'Search',
+    color: 'bg-blue-500',
+  },
+  {
+    id: 'web-development',
+    img:WebDevelopment,
     title: 'Web Development',
     description: 'High-performance, responsive websites built with the latest technologies to convert visitors into customers.',
     icon: 'Globe',
     color: 'bg-indigo-500',
   },
-  {
-    id: 'smm',
-    title: 'Social Media Marketing',
-    description: 'Engage your audience across social platforms and build a community around your brand identity.',
-    icon: 'Megaphone',
-    color: 'bg-purple-500',
-  },
+  // {
+  //   id: 'smm',
+  //   title: 'Social Media Marketing',
+  //   description: 'Engage your audience across social platforms and build a community around your brand identity.',
+  //   icon: 'Megaphone',
+  //   color: 'bg-purple-500',
+  // },
   {
     id: 'graphic-design',
+    img:GraphicDesign,
     title: 'Graphic Design',
     description: 'Creative visual solutions that capture attention and communicate your brand message effectively.',
     icon: 'PenTool',
     color: 'bg-pink-500',
   },
   {
-    id: 'lead-gen',
+    id: 'lead-generation',
+    img:LeadGeneration,
     title: 'Lead Generation',
     description: 'Strategic PPC and email campaigns designed to fill your sales pipeline with qualified prospects.',
     icon: 'TrendingUp',
     color: 'bg-emerald-500',
   },
+  {
+  id: "whatsapp-automation",
+  img:WhatsappAutomation,
+  title: "WhatsApp Automation",
+  description:
+    "Automate customer conversations, lead generation, and support with powerful WhatsApp workflows that boost engagement and drive conversions.",
+  icon: "MessageCircle",
+  color: "bg-emerald-500",
+}
 ];
 
 

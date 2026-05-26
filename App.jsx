@@ -24,6 +24,7 @@ import PortfolioPage from './pages/PortfolioPage';
 import ContactPage from './pages/ContactPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
+import ServiceDetailsPage from './pages/ServiceDetailsPage';
 import { ArrowUp } from 'lucide-react';
 import MagneticButton from './components/MagneticButton';
 import DESLogo from './assets/images/DES-LOGO.png';
@@ -118,6 +119,7 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/services" element={<ServicesPage />} />
+              <Route path="/services/:id" element={<ServiceDetailsPage />} />
               <Route path="/portfolio" element={<PortfolioPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
