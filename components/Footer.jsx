@@ -52,6 +52,16 @@ const Footer = () => {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link to="/privacy-policy" className="text-zinc-400 hover:text-[#FF7B54] transition-all font-medium text-sm tracking-wide">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms-and-conditions" className="text-zinc-400 hover:text-[#FF7B54] transition-all font-medium text-sm tracking-wide">
+                  Terms & Conditions
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -112,12 +122,12 @@ const Footer = () => {
             © {new Date().getFullYear()} Digital Elite Service. Redefined.
           </p>
           <div className="flex gap-4 mt-3 md:mt-0">
-            <a href="/privacy-policy" className="hover:text-[#FF7B54] transition">
+            <Link to="/privacy-policy" className="hover:text-[#FF7B54] transition text-zinc-500 hover:text-white">
               Privacy Policy
-            </a>
-            <a href="/terms-and-conditions" className="hover:text-[#FF7B54] transition">
+            </Link>
+            <Link to="/terms-and-conditions" className="hover:text-[#FF7B54] transition text-zinc-500 hover:text-white">
               Terms & Conditions
-            </a>
+            </Link>
           </div>
         </div>
 
