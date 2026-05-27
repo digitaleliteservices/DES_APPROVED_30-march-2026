@@ -74,8 +74,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { NAV_LINKS, DES_LOGO } from '../constants';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import { NAV_LINKS, DES_LOGO, SERVICES } from '../constants';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -117,26 +117,45 @@ const Navbar = () => {
           {NAV_LINKS.filter((l) =>
             ['Home', 'About', 'Services', 'Portfolio', 'Contact'].includes(l.name)
           ).map((link) => (
-            <Link
-              key={link.name}
-              to={link.href}
-              className={`relative text-[13px] font-semibold uppercase tracking-wider transition-colors duration-300 ${
-                location.pathname === link.href
-                  ? 'text-[#FF7B54]'
-                  : 'text-[#7D8597] hover:text-[#2D3142]'
-              }`}
-            >
-              {link.name}
-
-              {/* Animated underline */}
-              <span
-                className={`absolute left-0 -bottom-1 h-[2px] bg-[#FF7B54] transition-all duration-300 ${
-                  location.pathname === link.href
-                    ? 'w-full'
-                    : 'w-0 hover:w-full'
+            <div key={link.name} className="relative group">
+              <Link
+                to={link.href}
+                className={`relative flex items-center gap-1 text-[13px] font-semibold uppercase tracking-wider transition-colors duration-300 py-2 ${
+                  location.pathname === link.href || (link.name === 'Services' && location.pathname.startsWith('/services'))
+                    ? 'text-[#FF7B54]'
+                    : 'text-[#7D8597] group-hover:text-[#2D3142]'
                 }`}
-              />
-            </Link>
+              >
+                {link.name}
+                {link.name === 'Services' && <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />}
+
+                {/* Animated underline */}
+                <span
+                  className={`absolute left-0 bottom-1 h-[2px] bg-[#FF7B54] transition-all duration-300 ${
+                    location.pathname === link.href
+                      ? 'w-full'
+                      : 'w-0 group-hover:w-full'
+                  }`}
+                />
+              </Link>
+
+              {/* Dropdown Menu for Services */}
+              {link.name === 'Services' && (
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                  <div className="bg-white rounded-xl shadow-xl border border-zinc-100 py-3 w-64 flex flex-col relative before:content-[''] before:absolute before:-top-2 before:left-1/2 before:-translate-x-1/2 before:w-4 before:h-4 before:bg-white before:rotate-45 before:border-l before:border-t before:border-zinc-100">
+                    {SERVICES.map((service) => (
+                      <Link
+                        key={service.id}
+                        to={`/services/${service.id}`}
+                        className="px-5 py-2.5 text-sm font-semibold text-zinc-600 hover:text-[#FF7B54] hover:bg-orange-50 transition-colors z-10"
+                      >
+                        {service.title}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           ))}
         </div>
 
@@ -167,22 +186,37 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-full left-0 w-full bg-white border-b border-[#E0F7FA] shadow-xl md:hidden"
+            className="absolute top-full left-0 w-full bg-white border-b border-[#E0F7FA] shadow-xl md:hidden max-h-[85vh] overflow-y-auto"
           >
             <div className="flex flex-col p-8 space-y-6">
               {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-base font-bold uppercase tracking-widest ${
-                    location.pathname === link.href
-                      ? 'text-[#FF7B54]'
-                      : 'text-[#7D8597]'
-                  }`}
-                >
-                  {link.name}
-                </Link>
+                <div key={link.name} className="flex flex-col">
+                  <Link
+                    to={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`text-base font-bold uppercase tracking-widest flex items-center justify-between ${
+                      location.pathname === link.href || (link.name === 'Services' && location.pathname.startsWith('/services'))
+                        ? 'text-[#FF7B54]'
+                        : 'text-[#7D8597]'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                  {link.name === 'Services' && (
+                    <div className="flex flex-col pl-4 mt-3 space-y-3 border-l-2 border-[#FF7B54]/20">
+                      {SERVICES.map((service) => (
+                        <Link
+                          key={service.id}
+                          to={`/services/${service.id}`}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="text-sm font-semibold text-zinc-500 hover:text-[#FF7B54]"
+                        >
+                          {service.title}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
 
               <Link
